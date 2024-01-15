@@ -3,10 +3,12 @@ import requests
 
 app = Flask(__name__)
 
+
 # فرض کنید این تابع API را فراخوانی می‌کند تا نوبت‌ها را مدیریت کند
 def call_appointment_api(endpoint, data):
     response = requests.post(f'http://api.example.com/{endpoint}', data=data)
     return response.json()
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -22,6 +24,7 @@ def login():
         # منو برای بیماران یا دیگر نقش‌ها
         return jsonify({'menu': ['other_menu_items']})
 
+
 @app.route('/manage_appointment', methods=['POST'])
 def manage_appointment():
     action = request.form['action']  # 'add', 'cancel', 'view'
@@ -32,10 +35,12 @@ def manage_appointment():
         # نمایش نوبت‌های فعلی یا سایر عملیات‌ها
         pass
 
+
 # کد برای بررسی نقش کاربر
 def check_user_role(username, password):
     # بررسی نقش کاربر در پایگاه داده
     return 'clinic_staff'  # یا 'patient'
+
 
 if __name__ == '__main__':
     app.run(debug=True)
